@@ -334,6 +334,7 @@ body{
         <option value="mb_glb">GLB 200</option>
         <option value="glc">GLC 220d</option>
         <option value="mb_gle">GLE 300d</option>
+        <option value="mb_e350">E350 Coupe (C207) (2010)</option>
         <option value="amg_a45">AMG A45 S</option>
         <option value="amg_c43">AMG C43</option>
         <option value="amg_c63">AMG C63 S</option>
@@ -485,6 +486,12 @@ body{
       </optgroup>
       <optgroup label="🔧 GWM">
         <option value="ora03">Ora 03</option>
+      </optgroup>
+      <optgroup label="🚙 iCAUR">
+        <option value="ic_03t_4">03T 4WD</option>
+        <option value="ic_03t_2">03T 2WD</option>
+        <option value="ic_v23_4">V23 4WD</option>
+        <option value="ic_v23_2">V23 2WD</option>
       </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
@@ -777,6 +784,7 @@ var ICE={
   mb_glb:{b:'Mercedes',n:'GLB 200',s:'Mercedes GLB',c:7.2,u:'L',ins:900,m:580},
   glc:{b:'Mercedes',n:'GLC 220d',s:'Mercedes GLC',c:6.8,u:'L',ins:1100,m:700},
   mb_gle:{b:'Mercedes',n:'GLE 300d',s:'Mercedes GLE',c:7.8,u:'L',ins:1400,m:800},
+  mb_e350:{b:'Mercedes',n:'E350 Coupe (C207) (2010)',s:'Mercedes E350 Coupe',c:12.0,u:'L',ins:700,m:600},
   amg_a45:{b:'Mercedes',n:'AMG A45 S',s:'Mercedes AMG A45 S',c:9.0,u:'L',ins:1300,m:750},
   amg_c43:{b:'Mercedes',n:'AMG C43',s:'Mercedes AMG C43',c:9.5,u:'L',ins:1300,m:750},
   amg_c63:{b:'Mercedes',n:'AMG C63 S',s:'Mercedes AMG C63',c:11.0,u:'L',ins:1800,m:1000},
@@ -903,7 +911,12 @@ var EV={
   q4:{b:'Audi',n:'Q4 e-tron 40',s:'Audi Q4 e-tron',f:'Audi Q4 e-tron 40',c:14.8,bat:77,rng:520,ins:2000,p:1050000},
   q8e:{b:'Audi',n:'Q8 e-tron 55',s:'Audi Q8 e-tron',f:'Audi Q8 e-tron 55',c:19.6,bat:114,rng:582,ins:3000,p:1800000},
   // GWM
-  ora03:{b:'GWM',n:'Ora 03',s:'GWM Ora 03',f:'GWM Ora 03',c:15.5,bat:48,rng:310,ins:800,p:450000}
+  ora03:{b:'GWM',n:'Ora 03',s:'GWM Ora 03',f:'GWM Ora 03',c:15.5,bat:48,rng:310,ins:800,p:450000},
+  // iCAUR
+  ic_03t_4:{b:'iCAUR',n:'03T 4WD',s:'iCAUR 03T 4WD',f:'iCAUR 03T 4WD',c:19.9,bat:69.77,rng:351,ins:1200,p:699900},
+  ic_03t_2:{b:'iCAUR',n:'03T 2WD',s:'iCAUR 03T 2WD',f:'iCAUR 03T 2WD',c:18.3,bat:65.69,rng:359,ins:1200,p:639900},
+  ic_v23_4:{b:'iCAUR',n:'V23 4WD',s:'iCAUR V23 4WD',f:'iCAUR V23 4WD',c:22,bat:81.8,rng:372,ins:1200,p:669900},
+  ic_v23_2:{b:'iCAUR',n:'V23 2WD',s:'iCAUR V23 2WD',f:'iCAUR V23 2WD',c:20,bat:59.93,rng:300,ins:1200,p:519900}
 };
 
 function g(id){return document.getElementById(id)}
@@ -1041,7 +1054,7 @@ function calc(){
   g('b3').style.width=(sT3/mx*100).toFixed(1)+'%';g('bv3').textContent=R(sT3);
 
   g('ctFH').textContent='⛽ '+v.s;
-  g('fN').innerHTML=v.s+' maint. R'+v.m+'/mo. '+e.s+' maint. R0.<br>Eskom R'+esk.toFixed(2)+'/kWh · Solar R0 · '+e.s+' '+R(e.p);
+  g('fN').innerHTML=v.s+' maint. R'+v.m+'/mo. '+e.s+' maint. R0.<br>Eskom R'+esk.toFixed(2)+'/kWh · Solar R0 · '+e.s+' '+(e.p>0?R(e.p):'Price TBC');
 
   cc();
 }
